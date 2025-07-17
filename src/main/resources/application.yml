@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: user-company-core-v1
+  profiles:
+    active: local
