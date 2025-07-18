@@ -2,7 +2,7 @@
 
 **Modul core/library** untuk menangani entitas dan logika bisnis utama terkait **User**, **Company**, dan relasi antar keduanya dalam bentuk **CompanyMember**.
 
-Dirancang untuk digunakan bersama modul `api-v1` dan cocok untuk arsitektur berbasis microservices atau modul terpisah.
+Dirancang untuk digunakan bersama modul `web-v1` dan cocok untuk arsitektur berbasis microservices atau modular monolith.
 
 ---
 
@@ -11,54 +11,79 @@ Dirancang untuk digunakan bersama modul `api-v1` dan cocok untuk arsitektur berb
 - Entity & Service untuk:
   - `User` (dengan validasi email, hash password)
   - `Company` (dengan nama unik)
-  - `CompanyMember` (many-to-many, antar user & company)
-- DTO request & response
-- Validasi (`@Email`, `@NotBlank`, dsb)
-- UUID sebagai ID utama (bukan auto increment)
-- Dependency ringan, cocok untuk dipakai lintas modul
+  - `CompanyMember` (many-to-many, user ↔ company)
+- DTO untuk request & response
+- Validasi menggunakan Jakarta Validation (`@Email`, `@NotBlank`, dll)
+- UUID sebagai ID utama
+- Dependency ringan, siap digunakan oleh modul lain
 
 ---
 
 ## 🧱 Struktur Paket
 
+```
 com.company.user.lib.core.v1
 ├── master
-│ ├── user
-│ └── company
+│   ├── user
+│   └── company
 ├── referensi
-│ └── company_member
+│   └── company_member
 └── exception
+```
 
+---
 
 ## ⚙️ Konfigurasi
 
-Tambahkan dependency library ini ke project utama (`api-v1`) jika sudah dipublikasikan ke repository Maven lokal/intern.
+Tambahkan ke `pom.xml` project lain (setelah install ke `.m2`):
 
-Contoh penggunaan service di modul `api`:
+```xml
+<dependency>
+    <groupId>com.company.user.lib</groupId>
+    <artifactId>core-v1</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+</dependency>
+```
+
+Contoh penggunaan service:
 
 ```java
 @Autowired
 private UserService userService;
 
-public void registerUser() {
+public void register() {
     userService.register(new UserRegisterRequest(...));
 }
+```
 
-🛠️ Teknologi
-Java 21
-Spring Boot 3.5.3
-Spring Data JPA
-PostgreSQL
-Lombok
-Hibernate UUID
-Jakarta Validation
+---
 
-🚧 Catatan Penggunaan
-Belum termasuk controller (disediakan di modul lain, masih dalam proses)
+## 🛠 Teknologi
 
-Password dienkripsi menggunakan BCryptPasswordEncoder
+- Java 21
+- Spring Boot 3.5.3
+- Spring Data JPA
+- PostgreSQL
+- Lombok
+- Hibernate UUID
+- Jakarta Validation
 
-Disarankan digunakan bersama config Spring Security minimal (untuk encoder)
+---
 
-📦 Rencana Selanjutnya
- Integrasi dengan Config Server / Central Auth
+## 🚧 Catatan
+
+- Tidak berisi controller (disediakan oleh `web-v1`)
+- Password disimpan terenkripsi menggunakan `BCryptPasswordEncoder`
+- Siap diintegrasikan dengan Eureka, Gateway, dan Auth Server
+
+---
+
+## 📦 Rencana Pengembangan
+
+- [ ] Integrasi ke Spring Cloud Config
+
+---
+
+## 👨‍💻 Pengembang
+
+Maintainer: [@dwiaribowokj](https://github.com/dwiaribowokj)
