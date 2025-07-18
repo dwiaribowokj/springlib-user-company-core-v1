@@ -13,6 +13,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>user-company-core-v1</name>
     <description>user-company-core-v1</description>
+    <packaging>jar</packaging>
+
     <url/>
     <licenses>
         <license/>
@@ -75,13 +77,23 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus-local</id>
+            <name>Local Maven Public</name>
+            <url>http://localhost:8081/repository/maven-public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-local</id>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-local</id>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
