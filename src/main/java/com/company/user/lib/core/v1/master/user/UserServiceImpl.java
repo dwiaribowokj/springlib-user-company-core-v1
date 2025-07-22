@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
         return userRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User tidak ditemukan"));
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepo.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("User tidak ditemukan"));
+    }
 }
