@@ -8,7 +8,7 @@ artifact:
   publish: nexus
   base_url: https://nexus.dwiaribowokj.xyz
   repository: maven-snapshots   # pakai maven-snapshots jika versi berakhiran -SNAPSHOT
-  groupId: <com.wiee.usercompany>
-  artifactId: user-company-core-v1
+  groupId: com.company.user.lib
+  artifactId: core-v1
   version: auto               # ambil dari pom.xml / build.gradle
   packaging: jar
