@@ -87,12 +87,12 @@
 
     <distributionManagement>
         <repository>
-            <id>nexus-local</id>
-            <url>http://localhost:8081/repository/maven-releases/</url>
+            <id>dwi-maven-releases</id>
+            <url>https://nexus.dwiaribowokj.xyz/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>nexus-local</id>
-            <url>http://localhost:8081/repository/maven-snapshots/</url>
+            <id>dwi-maven-snapshots</id>
+            <url>https://nexus.dwiaribowokj.xyz/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
