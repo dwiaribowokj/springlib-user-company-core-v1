@@ -1,18 +1,3 @@
-stack: spring
-role: library
-
-deploy:
-  enabled: false       # library tidak dijalankan di server
-
-artifact:
-  publish: nexus
-  repository: maven-snapshots   # gunakan maven-snapshots kalau versi berakhiran -SNAPSHOT
-  base_url: https://nexus.dwiaribowokj.xyz
-  groupId: com.wiee
-  artifactId: core-v1
-  version: auto         # ambil dari pom.xml / build.gradle
-  packaging: jar
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/example-user-company
